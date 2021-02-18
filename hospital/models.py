@@ -33,7 +33,7 @@ class Doctor(models.Model):
     departments = models.ForeignKey(Department,on_delete=models.CASCADE)
 
 class Appointment(models.Model):
-    app_date = models.DateTimeField()
+    app_date = models.DateField()
     app_hour = models.CharField(max_length=20,choices=Hours,default="10:00am - 11:00am")
     doctors = models.ForeignKey(Doctor,on_delete=models.CASCADE)
     patients = models.ForeignKey(Patient,on_delete=models.CASCADE) 
