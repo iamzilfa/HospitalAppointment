@@ -22,7 +22,7 @@ class Department(models.Model):
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=600)
     hospitals = models.ForeignKey(Hospital,on_delete=models.CASCADE)
-    
+
 class Doctor(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
@@ -36,7 +36,4 @@ class Appointment(models.Model):
     app_date = models.DateTimeField()
     app_hour = models.CharField(max_length=20,choices=Hours,default="10:00am - 11:00am")
     doctors = models.ForeignKey(Doctor,on_delete=models.CASCADE)
-    patients = models.ForeignKey(Patient,on_delete=models.CASCADE) 
-
-
-
+    patients = models.ForeignKey(Patient,on_delete=models.CASCADE)
