@@ -32,7 +32,7 @@ class Schedule(models.Model):
 class Appointment(models.Model):
     doctors = models.ForeignKey(Doctor,on_delete=models.CASCADE)
     patients = models.ForeignKey(Patient,on_delete=models.CASCADE)
-    schedules = models.ForeignKey(Schedule,on_delete=models.CASCADE,default='schedule')
+    schedules = models.ForeignKey(Schedule,on_delete=models.CASCADE,default='1')
 
 
 
