@@ -10,7 +10,7 @@ class Patient(models.Model):
 
 class Hospital(models.Model):
     name = models.CharField(max_length=20)
-    
+
 class Department(models.Model):
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=600)
@@ -33,7 +33,3 @@ class Appointment(models.Model):
     doctors = models.ForeignKey(Doctor,on_delete=models.CASCADE)
     patients = models.ForeignKey(Patient,on_delete=models.CASCADE)
     schedules = models.ForeignKey(Schedule,on_delete=models.CASCADE,default='1')
-
-
-
-
