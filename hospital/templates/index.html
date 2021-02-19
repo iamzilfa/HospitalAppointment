@@ -12,8 +12,7 @@
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img class="d-block w-100"
-                src="https://res.cloudinary.com/zilfa/image/upload/v1613651870/national-cancer-institute-L8tWZT4CcVQ-unsplash_ldkuu9.jpg"
-                alt="First slide">
+                src="https://res.cloudinary.com/zilfa/image/upload/v1613651870/national-cancer-institute-L8tWZT4CcVQ-unsplash_ldkuu9.jpg" alt="First slide">
             <div class="carousel-caption d-none d-md-block">
                 <h5>Best Service Good Heath</h5>
                 <p>You're Safe With Us</p>
@@ -155,7 +154,85 @@
         </div>
     </section>
 </footer>
+<style>
+  html, body{
+      font-family: 'Poppins';
+      font-size: 15px;
+      line-height: 1.5;
+      box-sizing: border-box;
+      margin: 0;
+      overflow-x: hidden;
+      top: 0;
+      left: 0;
+  }
 
+  .carousel-item{
+      height: 92.6vh;
+      min-height: 200px;
+      background:no-repeat scroll center scroll;
+      -webkit-background-size: cover;
+      background-size: cover;
+  }
+
+  .carousel-item::before{
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: #000;
+      opacity: 0.6;
+  }
+
+  .carousel-caption{
+      bottom: 180px;
+      padding-left: 100px;
+      padding-right: 100px;
+  }
+
+  .carousel-caption h5{
+      font-size: 35px;
+      font-weight: 700;
+  }
+
+  .carousel-caption p{
+      font-size: 18px;
+      top: 2rem;
+  }
+
+  .slide-btn{
+      margin-top: 30px;
+  }
+
+  .slide-btn .btn{
+      background-color: #57cac3;
+      border-radius: 0;
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      margin-right: 15px;
+  }
+
+  .slide-btn .btn-2{
+
+      background-color: white;
+  }
+
+  .slide-btn .btn-1 a{
+      color: black;
+  }
+
+  .slide-btn .btn-2 a{
+      color: #111010;
+  }
+
+  .slide-btn .btn:hover{
+      background-color:#0a3d62;
+      color: white;
+  }
+
+</style>
 {% endblock %}
 
 <!--End of the block content-->
