@@ -29,6 +29,9 @@ class Department(models.Model):
     def search_departments(cls, search_term):
         return cls.objects.filter(Q(name__icontains = search_term)|Q(description__icontains = search_term))
 
+    def get_department_doctors(self):
+        return self.doctors.all
+
 
 class Doctor(models.Model):
     first_name = models.CharField(max_length=20)
