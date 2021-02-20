@@ -22,6 +22,14 @@ class Department(models.Model):
     def save_department(self):
         self.save()
 
+    def __str__(self):
+        return self.name
+
+    @classmethod
+    def search_departments(cls, search_term):
+        return cls.objects.filter(Q(name__icontains = search_term)|Q(description__icontains = search_term))
+
+
 class Doctor(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
@@ -33,6 +41,9 @@ class Doctor(models.Model):
 
     def save_doctor(self):
         self.save()
+
+    def __str__(self):
+        return self.first_name
 
 class Schedule(models.Model):
     app_date = models.DateField()
