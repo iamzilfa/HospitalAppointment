@@ -5,15 +5,15 @@
 <div class="row mt-4">
     <div class="col-md-6 m-auto">
         <div class="card">
-            <div class="card-header bg-warning">
-                <h5 class="card-text text-white">New Doctor</h5>
+            <div class="card-header bg-success">
+                <h5 class="card-text text-white">New Schedule</h5>
             </div>
             <div class="card-body">
                 <form action="" method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
             
-                    <input type="submit" class="btn btn-warning" value="Add Doctor">
+                    <input type="submit" class="btn btn-success" value="Add Schedule">
                 </form>
             </div>
         </div>

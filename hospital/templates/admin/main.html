@@ -74,8 +74,8 @@
                             </a>
                             <div class="collapse" id="collapseDoctors" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link" href="#">New Doctor</a>
-                                    <a class="nav-link" href="#">View Doctors</a>
+                                    <a class="nav-link" href="{% url 'new_doctor' %}">New Doctor</a>
+                                    <a class="nav-link" href="{% url 'doctors' %}">View Doctors</a>
                                 </nav>
                             </div>
                     
@@ -86,8 +86,8 @@
                             </a>
                             <div class="collapse" id="collapseSchedules" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link" href="#">New Schedule</a>
-                                    <a class="nav-link" href="#">View Schedules</a>
+                                    <a class="nav-link" href="{% url 'new_schedule' %}">New Schedule</a>
+                                    <a class="nav-link" href="{% url 'schedules' %}">View Schedules</a>
                                 </nav>
                             </div>
                     
