@@ -9,10 +9,10 @@
                 <h5 class="card-text text-white">New Doctor</h5>
             </div>
             <div class="card-body">
-                <form action="" method="POST">
+                <form action="{% url 'save_doctor' %}" method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
-            
+
                     <input type="submit" class="btn btn-warning" value="Add Doctor">
                 </form>
             </div>
