@@ -1,28 +1,50 @@
 from django.shortcuts import render, redirect
-from .forms import DepartmentForm, DoctorForm, ScheduleForm, UpdateDepartmentForm
-from .models import Department, Doctor
+from .forms import DepartmentForm, DoctorForm, ScheduleForm, UpdateDepartmentForm, UpdateScheduleForm
+from .models import Department, Doctor, Schedule
 
 def index(request):
     return render(request, 'index.html')
 
-def save_department(request):
-    form = DepartmentForm(request.POST or None)
-    if form.is_valid():
-        form.save()
+# def save_department(request):
+#     form = DepartmentForm(request.POST or None)
+#     if form.is_valid():
+#         form.save()
+#     departments = Department.objects.all()
+
+#     return render(request, 'admin/all-departments.html', context ={'departments': departments})
+
+# def save_doctor(request):
+#     if request.method == "POST":
+#         form = DoctorForm(request.POST, request.FILES)
+#         print(form.errors)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('all_doctors')
+#     else:
+#         form = DoctorForm()
+#         return render(request, "admin/new-doctor.html", context={"form":form})
+
+
+
+# def delete_department(request, pk):
+#     department = get_object_or_404(Department, pk=pk)
+#     department_pk = department.pk
+#     department.delete()
+#     return redirect("project_detail", pk=project_pk)
+
+def all_departments(request):
     departments = Department.objects.all()
+    return render(request, 'admin/all-departments.html', context={"departments": departments})
 
-    return render(request, 'admin/all-departments.html', context ={'departments': departments})
-
-def save_doctor(request):
+def new_department(request):
     if request.method == "POST":
-        form = DoctorForm(request.POST, request.FILES)
-        print(form.errors)
+        form = DepartmentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('all_doctors')
+            return redirect('all-departments')
     else:
-        form = DoctorForm()
-        return render(request, "admin/new-doctor.html", context={"form":form})
+        form = DepartmentForm()
+        return render(request, 'admin/new-department.html',{'form': form})
 
 def update_department(request,pk):
     dep = Department.objects.get(pk = pk)
@@ -40,37 +62,14 @@ def update_department(request,pk):
         form = UpdateDepartmentForm()
     return render(request, "admin/update-department.html", context={"form": form, "department":dep})
 
-def doctor_delete(request,pk):
-    doctor = Doctor.objects.get(pk=pk)
-    doctor.delete()
-
-    return redirect('all_doctors')
-
 def department_delete(request,pk):
     department = Department.objects.get(pk=pk)
     department.delete()
 
-    return render(request, 'admin/all-departments.html')
+    return redirect('all-departments')
 
-# def delete_department(request, pk):
-#     department = get_object_or_404(Department, pk=pk)
-#     department_pk = department.pk
-#     department.delete()
-#     return redirect("project_detail", pk=project_pk)
 
-def all_departments(request):
-    departments = Department.objects.all()
-    return render(request, 'admin/all-departments.html', context={"departments": departments})
-
-def new_department(request):
-    if request.method == "POST":
-        form = DepartmentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('all-departments')
-    else:
-        form = DepartmentForm()
-        return render(request, 'admin/new-department.html',{'form': form})
+# Doctor View Function
 
 def all_doctors(request):
     doctors = Doctor.objects.all()
@@ -82,29 +81,52 @@ def new_doctor(request):
         print(form.errors)
         if form.is_valid():
             form.save()
-            return redirect('all_doctors')
+            return redirect('doctors')
     else:
         form = DoctorForm()
         return render(request, "admin/new-doctor.html", context={"form":form})
 
-def new_schedule(request):
-    scheduleform = ScheduleForm()
-    return render(request, 'admin/new-schedule.html', {'form': scheduleform})
+
+def doctor_delete(request,pk):
+    doctor = Doctor.objects.get(pk=pk)
+    doctor.delete()
+
+    return redirect('doctors')
+
 
 def all_schedules(request):
-    return render(request, 'admin/all-schedules.html')
+    schedules = Schedule.objects.all()
+    return render(request, 'admin/all-schedules.html', {"schedules": schedules})
+
+def new_schedule(request):
+    if request.method == 'POST':
+        form = ScheduleForm(request.POST)
+        print(form.errors)
+        if form.is_valid():
+            form.save()
+            return redirect('schedules')
+    else:
+        form = ScheduleForm()
+        return render(request, 'admin/new-schedule.html', {'form': form})
+
+def update_schedule(request, pk):
+    schedule = Schedule.objects.get(pk = pk)
+    if request.method == 'POST':
+        form = UpdateScheduleForm(request.POST)
+        print(form.errors)
+        if form.is_valid():
+            app_date = form.cleaned_data['app_date']
+            app_hour = form.cleaned_data['app_hour']
+            Schedule.objects.filter(id = pk).update(app_date = app_date, app_hour = app_hour)
+            return redirect('schedules')
+    else:
+        form = UpdateScheduleForm()
+        return render(request, 'admin/update-schedule.html', {'form': form, "schedule": schedule})
 
 
-# class new_department( CreateView):
-#     redirect_field_name = "admin/all_departments.html"
-#     model = Department
-#     form_class = DepartmentForm
-#
-#     def form_valid(self, form):
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["current_user"] = self.request.user
-#         return context
+def schedule_delete(request,pk):
+    schedule = Schedule.objects.get(pk=pk)
+    schedule.delete()
+
+    return redirect('schedules')
+
