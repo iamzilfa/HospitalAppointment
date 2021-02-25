@@ -1,15 +1,15 @@
 {% extends 'admin/main.html' %}
-{%load crispy_forms_tags %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="row mt-4">
     <div class="col-md-6 m-auto">
         <div class="card">
             <div class="card-header bg-primary">
-                <h5 class="card-text text-white">New Department</h5>
+                <h5 class="card-text text-white">Edit Department</h5>
             </div>
             <div class="card-body">
-                <form action="{% url 'save_department' %}" method="POST">
+                <form action="{% url 'update_department' department.pk %}" method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
 

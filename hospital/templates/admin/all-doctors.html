@@ -11,6 +11,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th>Profile Pic</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
@@ -32,6 +33,9 @@
                 {% for doc in doctors %}
                 <tbody>
                     <tr>
+                        <td>
+                            <img src="{{doc.doctor_image.url}}" alt="" class="img-fluid border border-rounded">
+                        </td>
                         <td>{{doc.first_name}}</td>
                         <td>{{doc.last_name}}</td>
                         <td>{{doc.email}}</td>

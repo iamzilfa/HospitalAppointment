@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .forms import DepartmentForm, DoctorForm, ScheduleForm
+from django.shortcuts import render, redirect
+from .forms import DepartmentForm, DoctorForm, ScheduleForm, UpdateDepartmentForm
 from .models import Department, Doctor
 
 def index(request):
@@ -9,7 +9,6 @@ def save_department(request):
     form = DepartmentForm(request.POST or None)
     if form.is_valid():
         form.save()
-    # context= {'form': form }
     departments = Department.objects.all()
 
     return render(request, 'admin/all-departments.html', context ={'departments': departments})
@@ -20,22 +19,26 @@ def save_doctor(request):
         print(form.errors)
         if form.is_valid():
             form.save()
-            doctors = Doctor.objects.all()
-            return render(request, 'admin/all-doctors.html', context ={'doctors': doctors})
+            return redirect('all_doctors')
     else:
         form = DoctorForm()
-    return render(request, "admin/new-doctor.html", context={"form":form})
+        return render(request, "admin/new-doctor.html", context={"form":form})
 
 def update_department(request,pk):
+    dep = Department.objects.get(pk = pk)
+
     if request.method == "POST":
         form = UpdateDepartmentForm(request.POST)
         print(form.errors)
         if form.is_valid():
-            form.save()
+            name = form.cleaned_data['name']
+            description = form.cleaned_data['description']
+            Department.objects.filter(id = pk).update(name = name, description = description)
+            
             return redirect("all-departments")
     else:
         form = UpdateDepartmentForm()
-    return render(request, "admin/update-department.html", context={"form":form})
+    return render(request, "admin/update-department.html", context={"form": form, "department":dep})
 
 def doctor_delete(request,pk):
     doctor = Doctor.objects.get(pk=pk)
@@ -60,16 +63,29 @@ def all_departments(request):
     return render(request, 'admin/all-departments.html', context={"departments": departments})
 
 def new_department(request):
-    departform = DepartmentForm()
-    return render(request, 'admin/new-department.html',{'form': departform})
-
-def new_doctor(request):
-    doctorform = DoctorForm()
-    return render(request, 'admin/new-doctor.html', {'form': doctorform})
+    if request.method == "POST":
+        form = DepartmentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('all-departments')
+    else:
+        form = DepartmentForm()
+        return render(request, 'admin/new-department.html',{'form': form})
 
 def all_doctors(request):
     doctors = Doctor.objects.all()
     return render(request, 'admin/all-doctors.html', context={"doctors": doctors})
+
+def new_doctor(request):
+    if request.method == "POST":
+        form = DoctorForm(request.POST, request.FILES)
+        print(form.errors)
+        if form.is_valid():
+            form.save()
+            return redirect('all_doctors')
+    else:
+        form = DoctorForm()
+        return render(request, "admin/new-doctor.html", context={"form":form})
 
 def new_schedule(request):
     scheduleform = ScheduleForm()
