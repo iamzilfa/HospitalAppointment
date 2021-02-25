@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'hospital',
     'crispy_forms',
+    'bootstrap4',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -81,8 +82,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'hospital',
-        'USER': 'amandine',
-        'PASSWORD': 'pass',
+        'USER': 'deborah',
+        'PASSWORD': '1224',
     }
 }
 
