@@ -5,7 +5,7 @@ from tinymce.widgets import TinyMCE
 class DepartmentForm(forms.ModelForm):
     class Meta:
         model = Department
-        fields = ("name","description",)
+        fields = ("name","description", "department_image")
         widgets = {
             "name":forms.TextInput(attrs={"class":"form-control mb-4"}),
             "description":TinyMCE(attrs={'cols': 116, 'rows': 15}),
@@ -25,4 +25,10 @@ class ScheduleForm(forms.ModelForm):
 class UpdateDepartmentForm(forms.ModelForm):
     class Meta:
         model = Department
-        fields = ("name","description",)
+        fields = ("name","description")
+
+class UpdateScheduleForm(forms.ModelForm):
+    class Meta:
+        model = Schedule
+        exclude = ['doctor']
+

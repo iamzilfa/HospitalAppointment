@@ -17,6 +17,7 @@ class Hospital(models.Model):
 class Department(models.Model):
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=600)
+    department_image = models.ImageField(upload_to='departments/',blank=True)
     # hospitals = models.ForeignKey(Hospital,on_delete=models.CASCADE)
 
     def save_department(self):
@@ -59,6 +60,13 @@ class Schedule(models.Model):
 
     def save_schedule(self):
         self.save()
+
+    def delete_schedule(self):
+        self.delete()
+
+    @classmethod
+    def get_schedule_by_doctor(cls, doctor_id):
+        return cls.objects.filter(doctor = doctor_id).all()
 
 class Appointment(models.Model):
     doctors = models.ForeignKey(Doctor,on_delete=models.CASCADE)
