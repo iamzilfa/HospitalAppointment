@@ -21,6 +21,7 @@
       <script src="https://kit.fontawesome.com/83d474e45f.js" crossorigin="anonymous"></script>
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     {% endblock %}
 </head>
 
@@ -151,7 +152,7 @@
     <section id="ABOUT">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6" data-aos="fade-right" data-aos-delay="300">
                     <h3 style="text-align: center;font-weight: bold; color:black;">Welcome to <span style="text-align: center;font-weight: bold;color: #57cac3"> HEALTH CARE</span></h3><br><br>
                     <p style="text-align: justify; font-size: 17px;">Check out our child-friendly, visual stories that help prepare
                         children
@@ -162,7 +163,7 @@
                         whom they might meet and what might happen. Please see the appropriate story for your child
                         below.Please see the appropriate story for your child below.</p>
                 </div> <br> <br>
-                <div class="col-md-6">
+                <div class="col-md-6" data-aos="fade-left" data-aos-delay="600">
                     <img src="https://res.cloudinary.com/zilfa/image/upload/v1613650507/blackwomendocs_pg3wmg.jpg" height="350" alt="">
                 </div>
             </div> <br><br> <hr>
@@ -174,11 +175,11 @@
     <!-- DEPARTMENTS -->
     <section>
         <div class="container">
-            <h3 style=" padding-left: 150px; font-weight: bold; color:#57cac3;"> OUR <span style="font-weight: bold;color:black"> DEPARTMENTS </span></h3><br><br>
+            <h3 style=" padding-left: 150px; font-weight: bold; color:#57cac3;" data-aos="fade-right" data-aos-delay="300"> OUR <span style="font-weight: bold;color:black" data-aos="fade-right" data-aos-delay="300"> DEPARTMENTS </span></h3><br><br>
             <br>
             <div class="row">
 
-                <div  class="col-md-4">
+                <div  class="col-md-4" data-aos="fade-up" data-aos-delay="600">
                     <img  style="width: 350px; height: 200px;" class="card-img-top" src="http://grandgenesishealth.com/wp-content/uploads/2017/01/Orthopedics.jpg" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Orthopedics</h5>
@@ -187,7 +188,7 @@
                     </div>
                 </div>
 
-                <div  class="col-md-4">
+                <div  class="col-md-4" data-aos="fade-up" data-aos-delay="900">
                     <img  style="width: 350px; height: 200px;" class="card-img-top" src="https://sas-production-uploads.s3.eu-west-2.amazonaws.com/article_main_img/tool/large_364021630.png" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Neurosurgery</h5>
@@ -195,7 +196,7 @@
                       <a href="servces.html" class="btn" style="background-color:#57cac3;color: white;">View more</a>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="1200">
                     <img  style="width: 350px; height: 200px;" class="card-img-top" src="https://lh3.googleusercontent.com/proxy/-CbuuyyjnjpUE66oNCEoXThHQZMbYcamEA89f0eLucUoabVUAYG8DVOAZLktABx7n4TL2IANUcNajIXN29ywUw56Ep9PjmNGy_nhF1oQ7u3c3HR6NkIEh8G3tqVFVNwNGEI" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">Cardiology</h5>
@@ -208,13 +209,13 @@
     </section>
 
      <!-- FOOTER -->
-     <br><br><br><br>
+     <br><br><br><br><br>
      <footer>
         <hr>
         <div class="container">
-             <div class="row">
+             <div class="row" >
 
-                  <div class="col-md-4 col-sm-4">
+                  <div class="col-md-4 col-sm-4" data-aos="fade-right" data-aos-delay="900">
                        <div class="footer-thumb">
                             <h4 id="CONTACT" style="font-weight: 900;">Contact Info</h4> <hr>
                             <p>For more info don't hesitate to get in touch with us.</p>
@@ -234,9 +235,9 @@
                        </div>
                   </div>
 
-                  <div class="col-md-4 col-sm-4">
+                  <div class="col-md-4 col-sm-4" data-aos="fade-right" data-aos-delay="600">
                        <div class="footer-thumb">
-                            <h4 style="font-weight: 900;">Quick links </h4> <hr>
+                            <h4 style="font-weight: 900;" >Quick links </h4> <hr>
                             <li style="list-style: none; color: black;"><a href="#about"> &#8594; About Us  </a></li> <br>
                               <li style="list-style: none; color: black;"><a href="#team"> &#8594; Doctors </a></li> <br>
                               <li style="list-style: none; color: black;"><a href="#news"> &#8594; News </a></li> <br>
@@ -246,7 +247,7 @@
                        </div>
                   </div>
 
-                  <div class="col-md-4 col-sm-4">
+                  <div class="col-md-4 col-sm-4" data-aos="fade-right" data-aos-delay="300">
                        <div class="footer-thumb">
                             <div class="opening-hours">
                                  <h4 style="font-weight: 900;"> Services</h4> <hr>
@@ -280,6 +281,8 @@
 
    {% block scripts %}
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+       <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+       <script src = {% static "js/scripts.js" %}> </script>
     {% bootstrap_javascript %}
    {% endblock %}
 </body>
