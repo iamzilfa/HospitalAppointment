@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media'
             ],
         },
     },
@@ -81,9 +82,9 @@ WSGI_APPLICATION = 'hospital_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'hospital',
-        'USER': 'deborah',
-        'PASSWORD': '1224',
+        'NAME': 'hospitals',
+        'USER': 'amandine',
+        'PASSWORD': 'pass',
     }
 }
 
