@@ -9,7 +9,7 @@
                 <h5 class="card-text text-white">New Schedule</h5>
             </div>
             <div class="card-body">
-                <form action="" method="POST">
+                <form action="{% url 'new_schedule' %}" method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
             

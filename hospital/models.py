@@ -17,10 +17,14 @@ class Hospital(models.Model):
 class Department(models.Model):
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=600)
-    hospitals = models.ForeignKey(Hospital,on_delete=models.CASCADE)
+    department_image = models.ImageField(upload_to='departments/',blank=True)
+    # hospitals = models.ForeignKey(Hospital,on_delete=models.CASCADE)
 
     def save_department(self):
         self.save()
+
+    def delete_department(self):
+        self.delete()
 
     def __str__(self):
         return self.name
@@ -39,11 +43,12 @@ class Doctor(models.Model):
     email = models.EmailField()
     phone_number = models.IntegerField()
     details = models.CharField(max_length=600)
-    doctor_image = models.ImageField(upload_to='images/')
+    doctor_image = models.ImageField(upload_to='doctors/',blank=True)
     departments = models.ForeignKey(Department,on_delete=models.CASCADE)
 
     def save_doctor(self):
         self.save()
+
 
     def __str__(self):
         return self.first_name
@@ -51,9 +56,17 @@ class Doctor(models.Model):
 class Schedule(models.Model):
     app_date = models.DateField()
     app_hour = models.CharField(max_length=30)
+    doctor = models.ForeignKey(Doctor,on_delete=models.CASCADE,blank=True)
 
     def save_schedule(self):
         self.save()
+
+    def delete_schedule(self):
+        self.delete()
+
+    @classmethod
+    def get_schedule_by_doctor(cls, doctor_id):
+        return cls.objects.filter(doctor = doctor_id).all()
 
 class Appointment(models.Model):
     doctors = models.ForeignKey(Doctor,on_delete=models.CASCADE)
