@@ -56,7 +56,7 @@ def update_department(request,pk):
             name = form.cleaned_data['name']
             description = form.cleaned_data['description']
             Department.objects.filter(id = pk).update(name = name, description = description)
-            
+
             return redirect("all-departments")
     else:
         form = UpdateDepartmentForm()
@@ -129,4 +129,3 @@ def schedule_delete(request,pk):
     schedule.delete()
 
     return redirect('schedules')
-
