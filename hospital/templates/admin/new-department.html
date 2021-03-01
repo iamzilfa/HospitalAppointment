@@ -9,7 +9,7 @@
                 <h5 class="card-text text-white">New Department</h5>
             </div>
             <div class="card-body">
-                <form action="{% url 'save_department' %}" method="POST">
+                <form action="{% url 'new_department' %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form|crispy }}
 

@@ -11,6 +11,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th>Profile Pic</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
@@ -19,19 +20,12 @@
                         <th>Department</th>
                     </tr>
                 </thead>
-                <!-- <tfoot>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>Details date</th>
-                        <th>Department</th>
-                    </tr>
-                </tfoot> -->
                 {% for doc in doctors %}
                 <tbody>
                     <tr>
+                        <td>
+                            <img src="{{doc.doctor_image.url}}" alt="" class="img-fluid border border-rounded">
+                        </td>
                         <td>{{doc.first_name}}</td>
                         <td>{{doc.last_name}}</td>
                         <td>{{doc.email}}</td>
@@ -39,19 +33,9 @@
                         <td>{{doc.details}}</td>
                         <td>{{doc.departments.name}}</td>
                         <td>
-                            <a href="" class="btn btn-warning">Update info</a>
-                            <a href="{%url 'doctor_delete' doc.pk%}" class="btn btn-danger">Remove a doctor</a>
+                            <a href="{%url 'doctor_delete' doc.pk%}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
-
-                    <!-- <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                    </tr> -->
 
                 </tbody>
                 {% endfor %}

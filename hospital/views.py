@@ -1,97 +1,155 @@
-from django.shortcuts import render
-from .forms import *
-from .models import *
+from django.shortcuts import render, redirect
+from .forms import DepartmentForm, DoctorForm, ScheduleForm, UpdateDepartmentForm, UpdateScheduleForm
+from .models import Department, Doctor, Schedule
 from django.contrib.auth.decorators import login_required
 
 
-@login_required(login_url='/accounts/login/')
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'patient/index.html')
 
-def save_department(request):
-    form = DepartmentForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-    # context= {'form': form }
-    departments = Department.objects.all()
-
-    return render(request, 'admin/all-departments.html', context ={'departments': departments})
-
-def save_doctor(request):
-    if request.method == "POST":
-        form = DoctorForm(request.POST, request.FILES)
-        print(form.errors)
-        if form.is_valid():
-            form.save()
-            doctors = Doctor.objects.all()
-            return render(request, 'admin/all-doctors.html', context ={'doctors': doctors})
-    else:
-        form = DoctorForm()
-    return render(request, "admin/new-doctor.html", context={"form":form})
-
-def update_department(request,pk):
-    if request.method == "POST":
-        form = UpdateDepartmentForm(request.POST)
-        print(form.errors)
-        if form.is_valid():
-            form.save()
-            return redirect("all-departments")
-    else:
-        form = UpdateDepartmentForm()
-    return render(request, "admin/update-department.html", context={"form":form})
-
-def doctor_delete(request,pk):
-    doctor = Doctor.objects.get(pk=pk)
-    doctor.delete()
-
-    return redirect('all_doctors')
-
-def department_delete(request,pk):
-    department = Department.objects.get(pk=pk)
-    department.delete()
-
-    return render(request, 'admin/all-departments.html')
-
-# def delete_department(request, pk):
-#     department = get_object_or_404(Department, pk=pk)
-#     department_pk = department.pk
-#     department.delete()
-#     return redirect("project_detail", pk=project_pk)
 
 def all_departments(request):
     departments = Department.objects.all()
     return render(request, 'admin/all-departments.html', context={"departments": departments})
 
 def new_department(request):
-    departform = DepartmentForm()
-    return render(request, 'admin/new-department.html',{'form': departform})
+    if request.method == "POST":
+        form = DepartmentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('all-departments')
+    else:
+        form = DepartmentForm()
+        return render(request, 'admin/new-department.html',{'form': form})
 
-def new_doctor(request):
-    doctorform = DoctorForm()
-    return render(request, 'admin/new-doctor.html', {'form': doctorform})
+def update_department(request,pk):
+    dep = Department.objects.get(pk = pk)
+
+    if request.method == "POST":
+        form = UpdateDepartmentForm(request.POST)
+        print(form.errors)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            description = form.cleaned_data['description']
+            Department.objects.filter(id = pk).update(name = name, description = description)
+            
+            return redirect("all-departments")
+    else:
+        form = UpdateDepartmentForm()
+    return render(request, "admin/update-department.html", context={"form": form, "department":dep})
+
+def department_delete(request,pk):
+    department = Department.objects.get(pk=pk)
+    department.delete()
+
+    return redirect('all-departments')
+
+
+# Doctor View Function
 
 def all_doctors(request):
     doctors = Doctor.objects.all()
     return render(request, 'admin/all-doctors.html', context={"doctors": doctors})
 
-def new_schedule(request):
-    scheduleform = ScheduleForm()
-    return render(request, 'admin/new-schedule.html', {'form': scheduleform})
+def new_doctor(request):
+    if request.method == "POST":
+        form = DoctorForm(request.POST, request.FILES)
+        print(form.errors)
+        if form.is_valid():
+            form.save()
+            return redirect('doctors')
+    else:
+        form = DoctorForm()
+        return render(request, "admin/new-doctor.html", context={"form":form})
+
+
+def doctor_delete(request,pk):
+    doctor = Doctor.objects.get(pk=pk)
+    doctor.delete()
+
+    return redirect('doctors')
+
 
 def all_schedules(request):
-    return render(request, 'admin/all-schedules.html')
+    schedules = Schedule.objects.all()
+    return render(request, 'admin/all-schedules.html', {"schedules": schedules})
+
+def new_schedule(request):
+    if request.method == 'POST':
+        form = ScheduleForm(request.POST)
+        print(form.errors)
+        if form.is_valid():
+            form.save()
+            return redirect('schedules')
+    else:
+        form = ScheduleForm()
+        return render(request, 'admin/new-schedule.html', {'form': form})
+
+def update_schedule(request, pk):
+    schedule = Schedule.objects.get(pk = pk)
+    if request.method == 'POST':
+        form = UpdateScheduleForm(request.POST)
+        print(form.errors)
+        if form.is_valid():
+            app_date = form.cleaned_data['app_date']
+            app_hour = form.cleaned_data['app_hour']
+            Schedule.objects.filter(id = pk).update(app_date = app_date, app_hour = app_hour)
+            return redirect('schedules')
+    else:
+        form = UpdateScheduleForm()
+        return render(request, 'admin/update-schedule.html', {'form': form, "schedule": schedule})
 
 
-# class new_department( CreateView):
-#     redirect_field_name = "admin/all_departments.html"
-#     model = Department
-#     form_class = DepartmentForm
-#
-#     def form_valid(self, form):
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["current_user"] = self.request.user
-#         return context
+def schedule_delete(request,pk):
+    schedule = Schedule.objects.get(pk=pk)
+    schedule.delete()
+
+    return redirect('schedules')
+
+
+# User View Function
+
+
+def user_departments(request):
+    departments= Department.objects.all()
+    return render(request, 'patient/all-departments.html' , context={"departments": departments})
+
+def department_detail(request,id):
+    single_department = Department.objects.get(pk= id)
+    doctors = Doctor.objects.filter(departments=id)
+    return render(request,'patient/department_detail.html',{"single_department":single_department,"doctors":doctors})
+
+
+def user_doctors(request):
+    doctors = Doctor.objects.all()
+    return render(request, 'patient/all-doctors.html', context={"doctors": doctors})
+
+
+def doctor_detail(request,id):
+    single_doctor = Doctor.objects.get(pk= id)
+    return render(request,'patient/doctor_detail.html',{"single_doctor":single_doctor})
+
+
+
+def search_department(request):
+    if request.method=="GET":
+        search_term=request.GET.get("search")
+        searched_dept=Department.objects.get(name=search_term)
+        print(searched_dept.name)
+        message="{}".format(search_term)
+        return render(request, 'patient/department-search.html',context={"searched_dept":searched_dept, "message":message})
+    else:
+        message="You haven't searched for any department"
+        return render(request, 'patient/department-search.html',context={"message":message})
+        
+
+def search_doctor(request):
+    if request.method=="GET":
+        search_term=request.GET.get("searched")
+        searched_doct=Doctor.objects.get(first_name=search_term)
+        message="{}".format(search_term)
+        return render(request, 'patient/doctor-search.html',context={"searched_doct":searched_doct, "message":message})
+    else:
+        message="You haven't searched for any department"
+        return render(request, 'patient/doctor-search.html',context={"message":message})
+

@@ -5,19 +5,24 @@ from . import views
 
 urlpatterns=[
     url('^$',views.index,name = 'index'),
-    # url('^admin/',views.admin, name = 'main-dashboard'),
-    url('^admin/departments',views.all_departments, name = 'departments'),
     url('^admin/all-departments',views.all_departments, name = 'all-departments'),
     url('^admin/new-department',views.new_department, name = 'new_department'),
-    url('^admin/save-department',views.save_department, name = 'save_department'),
     url('^admin/doctors',views.all_doctors, name = 'doctors'),
     url('^admin/new-doctor',views.new_doctor, name = 'new_doctor'),
-    url('^admin/save-doctor',views.save_doctor, name = 'save_doctor'),
     url('^admin/schedules',views.all_schedules, name = 'schedules'),
     url('^admin/new-schedule',views.new_schedule, name = 'new_schedule'),
     url('^admin/department_delete/(?P<pk>\d+)$',views.department_delete, name = 'department_delete'),
     url('^admin/doctor_delete/(?P<pk>\d+)$',views.doctor_delete, name = 'doctor_delete'),
     url('^admin/update_department/(?P<pk>\d+)$',views.update_department, name = 'update_department'),
+    url('^admin/update_schedule/(?P<pk>\d+)$',views.update_schedule, name = 'update_schedule'),
+    url('^admin/schedule_delete/(?P<pk>\d+)$',views.schedule_delete, name = 'schedule_delete'),
+    url('^user_departments',views.user_departments, name = 'user_departments'),
+    url('^user_doctors',views.user_doctors, name = 'user_doctors'),
+    url('^department_detail/(\d+)$', views.department_detail, name='department_detail'),
+    url('^doctor_detail/(\d+)$', views.doctor_detail, name='doctor_detail'),
+    url('^serach', views.search_department, name='search'),
+    url('^searched', views.search_doctor, name='searched'),
+    
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

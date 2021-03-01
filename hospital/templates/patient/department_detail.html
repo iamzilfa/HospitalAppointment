@@ -1,0 +1,105 @@
+{% load bootstrap4 %}
+{% load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+
+    <title>Department</title>
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="https://kit.fontawesome.com/83d474e45f.js" crossorigin="anonymous"></script>
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="">Hospital Appointment</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'index'%}" style="font-weight: bold;">HOME</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#ABOUT" style="font-weight: bold;">ABOUT</a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" style="font-weight: bold;text-transform: uppercase;">{{single_department.name}}</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#CONTACT" style="font-weight: bold;">CONTACT</a>
+                </li>
+
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0  ml-auto" action="#">
+                <input type="text" class="form-control mr-sm-2" name="photo_name" placeholder="Search..."
+                    style="border-radius: 30px;height: 35px;font-family: 'Times New Roman', Times, serif;width: 200px;">
+            </form>
+        </div>
+    </nav>
+
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <div class="jumbotron"
+        style="background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('https://www.whitetulip.org/wp-content/uploads/2020/08/doctors-checking-medical-records-4DFS63W.jpg');background-size: cover; height: 80vh; background-position: center;">
+
+        <div style="margin-top: 15%;">
+            <h2 style="font-weight: bold;text-transform: uppercase;"> <img class="rounded-circle" src="{{single_department.department_image.url}}" width="60px" alt=""> &nbsp;<span style="color: #57cac3;">{{single_department.name}}</span> </h2>
+            
+        </div>
+    </div>
+<br>
+    <!-- <h1 class="text-center">Descriptions</h1> -->
+    <div class="container">
+        <p style="font-size: 17px;text-align: justify;">{{single_department.description}}</p>
+    </div>
+<br>
+    <h3 class="text-center" style="color: #57cac3;font-weight: bold;">OUR SPECIALISTS</h3>
+    
+    <div>
+        <div class="container" style="padding-top: 3%;">
+    
+            <div class="row">
+                {% for doc in doctors %}
+                <div class="col-md-4">
+                    <a href="{% url 'doctor_detail' doc.id %}" style="text-decoration: none;">
+                    <div class="card mb-4 shadow-lg">
+                            <img src="{{doc.doctor_image.url}}" width="100%">
+                        
+                        <div class="card-body text-center">
+                            <h6 class="card-title mb-0" style="text-transform: uppercase;color: black;font-weight: bold;font-size: 16px;">DR.{{doc.first_name}} {{doc.last_name}}</h6>
+                            <div class="card-text text-back-50" style="text-transform: uppercase;color: grey;font-weight: bold;" >{{doc.departments}}</div>
+                        </div>
+                    </div>
+                </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+
+    <script type="text/javascript" src="{%static 'js/newsletter.js'%}">
+    </script>
+</body>
+
+</html>

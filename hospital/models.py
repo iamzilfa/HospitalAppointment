@@ -2,15 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-class Patient(models.Model):
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
-    address = models.CharField(max_length=20,blank=True)
-    email = models.EmailField()
-    phone_number = models.IntegerField()
-
-    def save_patient(self):
-        self.save()
 
 class Hospital(models.Model):
     name = models.CharField(max_length=20)
@@ -18,6 +9,7 @@ class Hospital(models.Model):
 class Department(models.Model):
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=600)
+    department_image = models.ImageField(upload_to='departments/',blank=True)
     # hospitals = models.ForeignKey(Hospital,on_delete=models.CASCADE)
 
     def save_department(self):
@@ -31,7 +23,7 @@ class Department(models.Model):
 
     @classmethod
     def search_departments(cls, search_term):
-        return cls.objects.filter(Q(name__icontains = search_term)|Q(description__icontains = search_term))
+        return cls.objects.filter(name = search_term)
 
     def get_department_doctors(self):
         return self.doctors.all
@@ -55,27 +47,31 @@ class Doctor(models.Model):
         return self.first_name
 
 class Schedule(models.Model):
-    app_date = models.DateField()
+    app_date = models.DateField("appointment date(mm/dd/yyyy)")
+    app_day = models.CharField(max_length=30,blank=True)
     app_hour = models.CharField(max_length=30)
     doctor = models.ForeignKey(Doctor,on_delete=models.CASCADE,blank=True)
 
     def save_schedule(self):
         self.save()
 
+    def delete_schedule(self):
+        self.delete()
+
+    @classmethod
+    def get_schedule_by_doctor(cls, doctor_id):
+        return cls.objects.filter(doctor = doctor_id).all()
+
 class Appointment(models.Model):
+    first_name = models.CharField(max_length=20,blank=True)
+    last_name = models.CharField(max_length=20,blank=True)
+    address = models.CharField(max_length=20,blank=True)
+    email = models.EmailField(blank=True)
+    phone_number = models.CharField(max_length=20,blank=True)
     doctors = models.ForeignKey(Doctor,on_delete=models.CASCADE)
-    patients = models.ForeignKey(Patient,on_delete=models.CASCADE)
     schedules = models.ForeignKey(Schedule,on_delete=models.CASCADE,default='1')
 
     def save_appointment(self):
         self.save()
 
 
-class AdminProfile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
-    admin_image = models.ImageField(upload_to='images/')
-    
-    
-    

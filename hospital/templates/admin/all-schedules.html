@@ -11,42 +11,27 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Appointment Date</th>
+                        <th>Appointment Time</th>
+                        <th>Doctor</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                    </tr>
-                </tfoot>
+                
                 <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                    </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                    </tr>
+                    {% for schedule in schedules %}
                    
+                        <tr>
+                            <td>{{schedule.app_date}}</td>
+                            <td>{{schedule.app_hour}}</td>
+                            <td>{{schedule.doctor}}</td>
+                            <td>
+                                <a href="{% url 'update_schedule' schedule.pk%}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                <a href="{%url 'schedule_delete' schedule.pk%}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
