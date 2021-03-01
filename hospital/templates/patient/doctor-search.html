@@ -1,0 +1,117 @@
+{% load bootstrap4 %}
+{% load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+
+    <title>Department</title>
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="https://kit.fontawesome.com/83d474e45f.js" crossorigin="anonymous"></script>
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="">Hospital Appointment</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'index'%}" style="font-weight: bold;">HOME</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#ABOUT" style="font-weight: bold;">ABOUT</a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" style="font-weight: bold;">SERVICES</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#CONTACT" style="font-weight: bold;">CONTACT</a>
+                </li>
+
+
+            </ul>
+            <!-- <form class="form-inline my-2 my-lg-0  ml-auto" action="{% url 'searched' %}" method="GET">
+                <input type="search" class="form-control mr-sm-2" name="searched" placeholder="Search..."
+                    style="border-radius: 30px;height: 35px;font-family: 'Times New Roman', Times, serif;width: 200px;">
+            </form> -->
+        </div>
+    </nav>
+
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <div class="jumbotron"
+        style="background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('https://hbr.org/resources/images/article_assets/2020/11/Nov20_30_1255356846.jpg');background-size: cover; height: 40vh; background-position: center;">
+
+        <div style="margin-left: 2%;color:white;">
+            <h1 style="font-weight: bold;">DOCTORS</h1>
+            <h4> <span> <a href="{%url 'index'%}" style="color: white;text-decoration: none;">Home</a></span>
+                <span></span>
+                / <span style="color: #57cac3;font-weight: bold;"> Doctors</span>
+            </h4>
+        </div>
+    </div>
+
+    <div>
+        <div class="container" style="padding-top: 3%;">
+
+            {% if searched_doct %}
+            <h5 class="text-center">Found {{ searched_doct|count }} photo{{ users | pluralize }}</strong></h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="{% url 'doctor_detail' searched_doct.id %}" style="text-decoration: none;">
+                            <div class="card mb-4 shadow-lg">
+                                <img src="{{searched_doct.doctor_image.url}}" width="100%">
+
+                                <div class="card-body text-center">
+                                    <h6 class="card-title mb-0"
+                                        style="text-transform: uppercase;color: black;font-weight: bold;font-size: 16px;">
+                                        DR.{{searched_doct.first_name}} {{searched_doct.last_name}}</h6>
+                                    <div class="card-text text-back-50"
+                                        style="text-transform: uppercase;color: grey;font-weight: bold;">
+                                        {{.desearched_doctpartments}}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% else %}
+
+                <h5 class="text-center"> We didn't match for your search</strong></h5>
+
+                <a class="d-block mx-auto" href="{%url 'index'%}">
+                    <button class="btn btn-outline-danger btn-sm  d-block mx-auto">Back Home</button>
+                </a>
+                {% endif %}
+                <hr>
+
+
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{%static 'js/newsletter.js'%}">
+    </script>
+</body>
+
+</html>

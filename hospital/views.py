@@ -1,36 +1,12 @@
 from django.shortcuts import render, redirect
 from .forms import DepartmentForm, DoctorForm, ScheduleForm, UpdateDepartmentForm, UpdateScheduleForm
 from .models import Department, Doctor, Schedule
+from django.contrib.auth.decorators import login_required
+
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'patient/index.html')
 
-# def save_department(request):
-#     form = DepartmentForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
-#     departments = Department.objects.all()
-
-#     return render(request, 'admin/all-departments.html', context ={'departments': departments})
-
-# def save_doctor(request):
-#     if request.method == "POST":
-#         form = DoctorForm(request.POST, request.FILES)
-#         print(form.errors)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('all_doctors')
-#     else:
-#         form = DoctorForm()
-#         return render(request, "admin/new-doctor.html", context={"form":form})
-
-
-
-# def delete_department(request, pk):
-#     department = get_object_or_404(Department, pk=pk)
-#     department_pk = department.pk
-#     department.delete()
-#     return redirect("project_detail", pk=project_pk)
 
 def all_departments(request):
     departments = Department.objects.all()
@@ -129,3 +105,51 @@ def schedule_delete(request,pk):
     schedule.delete()
 
     return redirect('schedules')
+
+
+# User View Function
+
+
+def user_departments(request):
+    departments= Department.objects.all()
+    return render(request, 'patient/all-departments.html' , context={"departments": departments})
+
+def department_detail(request,id):
+    single_department = Department.objects.get(pk= id)
+    doctors = Doctor.objects.filter(departments=id)
+    return render(request,'patient/department_detail.html',{"single_department":single_department,"doctors":doctors})
+
+
+def user_doctors(request):
+    doctors = Doctor.objects.all()
+    return render(request, 'patient/all-doctors.html', context={"doctors": doctors})
+
+
+def doctor_detail(request,id):
+    single_doctor = Doctor.objects.get(pk= id)
+    return render(request,'patient/doctor_detail.html',{"single_doctor":single_doctor})
+
+
+
+def search_department(request):
+    if request.method=="GET":
+        search_term=request.GET.get("search")
+        searched_dept=Department.objects.get(name=search_term)
+        print(searched_dept.name)
+        message="{}".format(search_term)
+        return render(request, 'patient/department-search.html',context={"searched_dept":searched_dept, "message":message})
+    else:
+        message="You haven't searched for any department"
+        return render(request, 'patient/department-search.html',context={"message":message})
+        
+
+def search_doctor(request):
+    if request.method=="GET":
+        search_term=request.GET.get("searched")
+        searched_doct=Doctor.objects.get(first_name=search_term)
+        message="{}".format(search_term)
+        return render(request, 'patient/doctor-search.html',context={"searched_doct":searched_doct, "message":message})
+    else:
+        message="You haven't searched for any department"
+        return render(request, 'patient/doctor-search.html',context={"message":message})
+

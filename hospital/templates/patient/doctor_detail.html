@@ -1,0 +1,111 @@
+{% load bootstrap4 %}
+{% load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+
+    <title>Department</title>
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="https://kit.fontawesome.com/83d474e45f.js" crossorigin="anonymous"></script>
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#"><img  id="logo" src="media/images/healthlogo-removebg-preview.png" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'index'%}" style="font-weight: bold; padding-right: 50px; font-family: 'Poppins';font-size: 18px;">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#ABOUT" style="font-weight: bold; padding-right: 50px; font-family: 'Poppins';font-size: 18px;">About Us</a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" style="font-weight: bold; padding-right: 50px; font-family: 'Poppins';font-size: 18px;color: #0000FF;">Doctor</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#CONTACT" style="font-weight: bold; padding-right: 50px; font-family: 'Poppins';font-size: 18px;">Contacts</a>
+                </li>
+
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0  ml-auto" action="#">
+                <input type="text" class="form-control mr-sm-2" name="photo_name" placeholder="Search..."
+                    style="border-radius: 30px;height: 35px;font-family: 'Times New Roman', Times, serif;width: 200px;">
+            </form>
+        </div>
+    </nav>
+
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <div class="jumbotron"
+        style="background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('https://hbr.org/resources/images/article_assets/2020/11/Nov20_30_1255356846.jpg');background-size: cover; height: 40vh; background-position: center;">
+
+        <div style="margin-top: 2%;">
+            <h4 style="font-weight: bold;text-transform: uppercase;color: white;">{{single_doctor.first_name}}
+                {{single_doctor.last_name}}</span> </h4>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-4 shadow-md">
+                <img src="{{single_doctor.doctor_image.url}}" width="100%" alt="">
+            </div>
+            <!-- <div class="card shadow-lg" style="margin-left: -0.38cm;height: 234px;width: 60%;border: none;"> -->
+                <div class="col-7 shadow-lg" style="margin-left: -0.38cm;">
+                    <div style="margin-top:3%;">
+                        <span style="font-weight: bold;color: #0000FF;font-size: 20px;">Dr.{{single_doctor.first_name}}
+                            {{single_doctor.last_name}} </span>
+                            <span><a class="btn btn-primary" href="" style="float: right;font-weight: bold;border: none;background-color:#45ac8b;">Make an
+                                Appointment</a></span>
+                            
+                        <p style="font-size: 17px;text-transform: capitalize;">{{single_doctor.departments.name}}
+                        </p>
+                                <hr>
+
+                                <h5 style="font-weight: bold;color: rgb(88, 86, 86);">Overview</h5>
+                                <p>{{single_doctor.details}}</p>
+                                <p><i class="fas fa-envelope-open-text" style="color: #0000FF;"></i> <span style="font-weight: bold;color: rgb(88, 86, 86);">{{single_doctor.email}}</span> &nbsp;  | &nbsp; <i class="fas fa-phone" style="color: #0000FF;"></i> <span style="font-weight: bold;color: rgb(88, 86, 86);">{{single_doctor.phone_number}}</span></p>
+                    </div>
+                </div>
+            <!-- </div> -->
+        </div>
+    </div>
+    <br>
+    <br>
+<div class="container">
+<h1>Schedule</h1>
+</div>
+
+
+
+    <script type="text/javascript" src="{%static 'js/newsletter.js'%}">
+    </script>
+</body>
+
+</html>
+
+</html>

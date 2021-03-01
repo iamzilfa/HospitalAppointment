@@ -1,5 +1,5 @@
 from django import forms
-from .models import Patient, Hospital, Doctor, Schedule, Department, Appointment
+from .models import Hospital, Doctor, Schedule, Department, Appointment
 from tinymce.widgets import TinyMCE
 
 class DepartmentForm(forms.ModelForm):

@@ -83,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'hospital',
-        'USER': 'deborah',
-        'PASSWORD': '1224',
+        'USER': 'wecode',
+        'PASSWORD': '123456',
     }
 }
 
@@ -132,3 +132,7 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+LOGIN_REDIRECT_URL = 'all-departments'
+LOGOUT_REDIRECT_URL = 'index'
