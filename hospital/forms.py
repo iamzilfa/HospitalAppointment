@@ -31,4 +31,3 @@ class UpdateScheduleForm(forms.ModelForm):
     class Meta:
         model = Schedule
         exclude = ['doctor']
-
