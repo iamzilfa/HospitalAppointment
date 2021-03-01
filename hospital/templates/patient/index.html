@@ -74,18 +74,18 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            style="font-weight: bold; padding-right: 40px; color: black; font-family: 'Poppins', sans-serif;">
+                            style="font-weight: bold; padding-right: 40px;font-family: 'Poppins', sans-serif;">
                             Departments
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="servces.html" style="font-family: 'Poppins', sans-serif;">Services</a>
-                            <a class="dropdown-item" href="doctors.html" style="font-family: 'Poppins', sans-serif;">Doctors</a>
+                            <a class="dropdown-item" href="{% url 'user_departments' %}" style="font-family: 'Poppins', sans-serif;">Services</a>
+                            <a class="dropdown-item" href="{% url 'user_doctors' %}" style="font-family: 'Poppins', sans-serif;">Doctors</a>
 
                         </div>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#CONTACT" style="font-weight: bold;padding-right: 40px; color: black; font-family: 'Poppins', sans-serif;">Contacts</a>
+                        <a class="nav-link" href="#CONTACT" style="font-weight: bold;padding-right: 40px;font-family: 'Poppins', sans-serif;">Contacts</a>
                     </li>
 
                    <li class="appointment-btn" style="font-family: 'Poppins', sans-serif;" ><a href="#">Make an appointment</a></li>
@@ -306,7 +306,7 @@
    {% block scripts %}
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-       <script src = {% static "js/scripts.js" %}> </script>
+       <script src = "{%static 'js/scripts.js'%}"> </script>
     {% bootstrap_javascript %}
    {% endblock %}
 </body>

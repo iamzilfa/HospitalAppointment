@@ -22,7 +22,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="">Hospital Appointment</a>
+        <a class="navbar-brand" href="#"><img  id="logo" src="media/images/healthlogo-removebg-preview.png" alt="logo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span></span>
@@ -34,19 +34,19 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{%url 'index'%}" style="font-weight: bold;">HOME</a>
+                    <a class="nav-link" href="{%url 'index'%}" style="font-weight: bold; padding-right: 50px; font-family: 'Poppins';font-size: 18px;">Home</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#ABOUT" style="font-weight: bold;">ABOUT</a>
+                    <a class="nav-link" href="#ABOUT" style="font-weight: bold; padding-right: 50px; font-family: 'Poppins';font-size: 18px;">About Us</a>
                 </li>
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="#" style="font-weight: bold;text-transform: uppercase;">{{single_department.name}}</a>
+                    <a class="nav-link" href="#" style="font-weight: bold; padding-right: 50px; font-family: 'Poppins';font-size: 18px;text-transform: capitalize;color:#04D4F0;">{{single_department.name}}</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#CONTACT" style="font-weight: bold;">CONTACT</a>
+                    <a class="nav-link" href="#CONTACT" style="font-weight: bold; padding-right: 50px; font-family: 'Poppins';font-size: 18px;">Contacts</a>
                 </li>
 
 
@@ -63,7 +63,7 @@
         style="background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('https://www.whitetulip.org/wp-content/uploads/2020/08/doctors-checking-medical-records-4DFS63W.jpg');background-size: cover; height: 80vh; background-position: center;">
 
         <div style="margin-top: 15%;">
-            <h2 style="font-weight: bold;text-transform: uppercase;"> <img class="rounded-circle" src="{{single_department.department_image.url}}" width="60px" alt=""> &nbsp;<span style="color: #57cac3;">{{single_department.name}}</span> </h2>
+            <h2 style="font-weight: bold;text-transform: uppercase;"> <img class="rounded-circle" src="{{single_department.department_image.url}}" width="60px" alt=""> &nbsp;<span style="color: #04D4F0;">{{single_department.name}}</span> </h2>
             
         </div>
     </div>
@@ -73,7 +73,7 @@
         <p style="font-size: 17px;text-align: justify;">{{single_department.description}}</p>
     </div>
 <br>
-    <h3 class="text-center" style="color: #57cac3;font-weight: bold;">OUR SPECIALISTS</h3>
+    <h3 class="text-center" style="color: #0000ff;;font-weight: bold;">OUR SPECIALISTS</h3>
     
     <div>
         <div class="container" style="padding-top: 3%;">
