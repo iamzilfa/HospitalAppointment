@@ -14,7 +14,8 @@
                         <th>Department Image</th>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Action</th>
+                        <th>Edit</th>
+                        <th>Remove</th>
 
                     </tr>
                 </thead>
@@ -27,8 +28,10 @@
                       <td>{{dep.name }}</td>
                       <td>{{dep.description}}</td>
                         <td>
-                            <a href="{%url 'update_department' dep.pk%}" class="btn btn-warning">Edit Department</a>
-                            <a href="{%url 'department_delete' dep.pk%}" class="btn btn-danger">Remove Department</a>
+                            <a href="{%url 'update_department' dep.pk%}" class="btn btn-outline-primary"><i class="fas fa-edit"></i></a>
+                        </td>
+                        <td>
+                            <a href="{%url 'department_delete' dep.pk%}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
                         </td>
 
                     </tr>
