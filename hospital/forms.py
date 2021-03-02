@@ -43,4 +43,4 @@ class UpdateScheduleForm(forms.ModelForm):
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
-        exclude = ['doctors','schedules']
+        exclude = ['doctors','schedules', 'status']
