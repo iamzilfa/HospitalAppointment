@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import DepartmentForm, DoctorForm, ScheduleForm, UpdateDepartmentForm, UpdateScheduleForm
-from .models import Department, Doctor, Schedule
+from .forms import *
+from .models import Department, Doctor, Schedule, Appointment
 from django.contrib.auth.decorators import login_required
 
 
@@ -63,6 +63,25 @@ def new_doctor(request):
         return render(request, "admin/new-doctor.html", context={"form":form})
 
 
+def update_doctor(request,pk):
+    doc = Doctor.objects.get(pk = pk)
+
+    if request.method == "POST":
+        form = UpdateDoctorForm(request.POST)
+        print(form.errors)
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            phone_number = form.cleaned_data['phone_number']
+            details = form.cleaned_data['details']
+            Doctor.update_doctor(pk, first_name, last_name, email,phone_number,details) 
+            return redirect("doctors")
+    else:
+        form = UpdateDoctorForm()
+    return render(request, "admin/update-doctor.html", context={"form": form, "doctor":doc})
+
+
 def doctor_delete(request,pk):
     doctor = Doctor.objects.get(pk=pk)
     doctor.delete()
@@ -92,8 +111,9 @@ def update_schedule(request, pk):
         print(form.errors)
         if form.is_valid():
             app_date = form.cleaned_data['app_date']
+            app_day = form.cleaned_data['app_day']
             app_hour = form.cleaned_data['app_hour']
-            Schedule.objects.filter(id = pk).update(app_date = app_date, app_hour = app_hour)
+            Schedule.objects.filter(id = pk).update(app_date = app_date, app_day = app_day, app_hour = app_hour)
             return redirect('schedules')
     else:
         form = UpdateScheduleForm()
@@ -127,8 +147,8 @@ def user_doctors(request):
 
 def doctor_detail(request,id):
     single_doctor = Doctor.objects.get(pk= id)
-    return render(request,'patient/doctor_detail.html',{"single_doctor":single_doctor})
-
+    schedules = Schedule.get_schedule_by_doctor(id)
+    return render(request,'patient/doctor_detail.html',{"single_doctor":single_doctor, "schedules":schedules})
 
 
 def search_department(request):
@@ -152,4 +172,37 @@ def search_doctor(request):
     else:
         message="You haven't searched for any department"
         return render(request, 'patient/doctor-search.html',context={"message":message})
+
+
+def make_appointment(request,schedule_id):
+    if request.method=='POST':
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            address = form.cleaned_data['address']
+            email = form.cleaned_data['email']
+            phone_number = form.cleaned_data['phone_number']
+            schedule = Schedule.objects.get(pk=schedule_id)
+            new_appointment = Appointment(first_name = first_name, last_name = last_name, address=address, email = email, phone_number=phone_number, schedules = schedule )
+            new_appointment.save()
+            Schedule.taken_schedule(schedule_id)
+            return render(request, 'patient/appointment-success.html', {"appointment":new_appointment})
+    else:
+        form = AppointmentForm()
+        return render(request, 'patient/appointment.html', {"form":form, "schedule_id":schedule_id})
+        
+
+def all_unchecked_appointments(request):
+    appointments= Appointment.all_unchecked_appointment()
+    print(appointments)
+    return render(request, 'admin/all-appointments.html' , context={"appointments": appointments})
+
+def all_checkedin_appointments(request):
+    appointments= Appointment.all_checkedin_appointment()
+    return render(request, 'admin/all-checkedin-appointments.html' , context={"appointments": appointments})
+
+def checkin(request,id):
+    Appointment.checkedin_appointment(id)
+    return redirect('checkedin')
 

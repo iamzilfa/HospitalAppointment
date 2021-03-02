@@ -12,9 +12,12 @@
                 <thead>
                     <tr>
                         <th>Appointment Date</th>
+                        <th>Appointment Day</th>
                         <th>Appointment Time</th>
                         <th>Doctor</th>
+                        <th>Status</th>
                         <th>Action</th>
+
                     </tr>
                 </thead>
                 
@@ -23,10 +26,12 @@
                    
                         <tr>
                             <td>{{schedule.app_date}}</td>
+                            <td>{{schedule.app_day}}</td>
                             <td>{{schedule.app_hour}}</td>
                             <td>{{schedule.doctor}}</td>
+                            <td>{{schedule.status}}</td>
                             <td>
-                                <a href="{% url 'update_schedule' schedule.pk%}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                <a href="{% url 'update_schedule' schedule.pk%}" class="btn btn-outline-primary"><i class="fas fa-edit"></i></a>
                                 <a href="{%url 'schedule_delete' schedule.pk%}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>

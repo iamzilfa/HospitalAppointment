@@ -1,0 +1,19 @@
+{%extends 'patient/base.html'%}
+{% load static %}
+{%load crispy_forms_tags %}
+{% block content %}
+{{block.super}}
+
+<h1>Appointment Details</h1>
+<p>{{appointment.first_name}}</p>
+<p>{{appointment.last_name}}</p>
+<p>{{appointment.schedules.app_day}} {{appointment.schedules.app_date }} {{ appointment.schedules.app_hour }}</p>
+
+{% endblock %}
+
+<!--End of the block content-->
+{% block scripts %}
+{{block.super}}
+<script type="text/javascript" src="{%static 'js/newsletter.js'%}">
+</script>
+{% endblock %}

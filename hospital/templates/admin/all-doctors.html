@@ -18,6 +18,8 @@
                         <th>Phone Number</th>
                         <th>Details date</th>
                         <th>Department</th>
+                        <th>Edit</th>
+                        <th>Remove</th>
                     </tr>
                 </thead>
                 {% for doc in doctors %}
@@ -32,6 +34,9 @@
                         <td>{{doc.phone_number}}</td>
                         <td>{{doc.details}}</td>
                         <td>{{doc.departments.name}}</td>
+                        <td>
+                        <a href="{%url 'update_doctor' doc.pk%}" class="btn btn-outline-primary"><i class="fas fa-edit"></i></a>
+                    </td>
                         <td>
                             <a href="{%url 'doctor_delete' doc.pk%}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></a>
                         </td>

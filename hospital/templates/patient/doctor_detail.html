@@ -9,54 +9,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="HandheldFriendly" content="true">
 
-    <title>Department</title>
+    <title>Doctors</title>
 
     {% block styles %}
     {% bootstrap_css %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <script src="https://kit.fontawesome.com/83d474e45f.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     {% endblock %}
 
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#"><img  id="logo" src="media/images/healthlogo-removebg-preview.png" alt="logo"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+    <header>
+        <div class="container">
+             <div class="row">
+    
+                <div class="col-md-8 col-sm-7 text-align-right">
+                    <span class="phone-icon"><i class="fa fa-phone"></i> +250-0788-304-545</span>
+                    <span class="date-icon"><i class="fa fa-calendar-plus-o"></i> 24/7</span>
+                    <span class="email-icon"><i class="fa fa-envelope-o"></i> <a href="#">healthcare@gmail.com</a></span>
+                    <span class="address-icon"><i class="fa fa-map-marker-alt"></i>KN 190st 32 Kigali-Rwanda</span>
+    
+               </div>
+    
+                  <div class="col-md-4 col-sm-5">
+                    <ul class="social-icon">
+                        <li><a href="#" class="fa fa-facebook"></a></li>
+                        <li><a href="#" class="fa fa-twitter"></a></li>
+                        <li><a href="#" class="fa fa-instagram"></a></li>
+                   </ul>
+                  </div>
+    
+             </div>
+        </div><br>
+    </header>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#ffff;">
+            <a class="navbar-brand" href="#"><img  id="logo" src="media/images/healthlogo-removebg-preview.png" alt="logo"></a>
+    
+    
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+    
+            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+    
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{%url 'index'%}" style="font-weight: bold; padding-right: 80px; font-family: 'Poppins', sans-serif;">Home</a>
+                    </li>
+    
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" style="font-weight: bold; padding-right: 80px; font-family: 'Poppins';color: #0000FF;font-size: 16px;">Doctors</a>
+                    </li>
+    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#CONTACT" style="font-weight: bold;padding-right: 80px; color: black; font-family: 'Poppins', sans-serif;">Contacts</a>
+                    </li>
+    </ul>
+                    <form class="form-inline my-2 my-lg-0  ml-auto" action="{% url 'search' %}" method="GET">
+                    <input type="search" class="form-control mr-sm-2" name="search" placeholder="Search..."
+                        style="border-radius: 30px;height: 35px;font-family: 'Times New Roman', Times, serif;width: 200px;">
+                </form>
 
-        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{%url 'index'%}" style="font-weight: bold; padding-right: 50px; font-family: 'Poppins';font-size: 18px;">Home</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#ABOUT" style="font-weight: bold; padding-right: 50px; font-family: 'Poppins';font-size: 18px;">About Us</a>
-                </li>
-
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" style="font-weight: bold; padding-right: 50px; font-family: 'Poppins';font-size: 18px;color: #0000FF;">Doctor</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#CONTACT" style="font-weight: bold; padding-right: 50px; font-family: 'Poppins';font-size: 18px;">Contacts</a>
-                </li>
-
-
-            </ul>
-            <form class="form-inline my-2 my-lg-0  ml-auto" action="#">
-                <input type="text" class="form-control mr-sm-2" name="photo_name" placeholder="Search..."
-                    style="border-radius: 30px;height: 35px;font-family: 'Times New Roman', Times, serif;width: 200px;">
-            </form>
-        </div>
-    </nav>
+            </div>
+        </nav>
+    </div>
 
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
     <div class="jumbotron"
@@ -79,9 +104,6 @@
                     <div style="margin-top:3%;">
                         <span style="font-weight: bold;color: #0000FF;font-size: 20px;">Dr.{{single_doctor.first_name}}
                             {{single_doctor.last_name}} </span>
-                            <span><a class="btn btn-primary" href="" style="float: right;font-weight: bold;border: none;background-color:#45ac8b;">Make an
-                                Appointment</a></span>
-                            
                         <p style="font-size: 17px;text-transform: capitalize;">{{single_doctor.departments.name}}
                         </p>
                                 <hr>
@@ -96,8 +118,28 @@
     </div>
     <br>
     <br>
+    <br>
 <div class="container">
-<h1>Schedule</h1>
+<h1 class="text-center" style="border-bottom: 4px solid #45ac8b;font-weight: bold;max-width: 38%;margin: auto;color: grey;">Make an Appointment</h1>
+<br>
+<br>
+<br>
+
+<div class="row">
+    {% for schedule in schedules %}
+    <div class="col-12 d-flex justify-content-around align-items-center shadow-lg mb-3">
+        <p>{{schedule.app_date}}</p>
+        <p>{{schedule.app_day}}</p>
+        <p>{{schedule.app_hour}}</p>
+        <a href="{% url 'appointment' schedule.id %}" class="btn" style="background-color: #45ac8b;color: white;"><i class="far fa-edit"></i></a>
+    </div>
+
+    {% empty %}
+    <p>No data is not available</p>
+    {% endfor %}
+</div>
+
+
 </div>
 
 

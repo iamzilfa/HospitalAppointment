@@ -46,11 +46,22 @@ class Doctor(models.Model):
     def __str__(self):
         return self.first_name
 
+    
+    @classmethod
+    def update_doctor(cls, doc_id, first_name, last_name, email, phone_number, details):
+        cls.objects.filter(id = doc_id).update(first_name = first_name, last_name = last_name, email = email, phone_number = phone_number, details = details)
+
 class Schedule(models.Model):
+    status_choice = (
+        ('taken', 'taken'),
+        ('available', 'available'),
+    )
     app_date = models.DateField("appointment date(mm/dd/yyyy)")
     app_day = models.CharField(max_length=30,blank=True)
     app_hour = models.CharField(max_length=30)
     doctor = models.ForeignKey(Doctor,on_delete=models.CASCADE,blank=True)
+    status = models.CharField(max_length= 30, choices=status_choice, default='available')
+    
 
     def save_schedule(self):
         self.save()
@@ -60,18 +71,38 @@ class Schedule(models.Model):
 
     @classmethod
     def get_schedule_by_doctor(cls, doctor_id):
-        return cls.objects.filter(doctor = doctor_id).all()
+        return cls.objects.filter(doctor = doctor_id, status = 'available').all()
+
+    @classmethod
+    def taken_schedule(cls, id):
+        cls.objects.filter(id = id).update(status = 'taken')
 
 class Appointment(models.Model):
+    status_choice = (
+        ('checkedin', 'checked_in'),
+        ('unchecked', 'unchecked'),
+    )
     first_name = models.CharField(max_length=20,blank=True)
     last_name = models.CharField(max_length=20,blank=True)
     address = models.CharField(max_length=20,blank=True)
     email = models.EmailField(blank=True)
     phone_number = models.CharField(max_length=20,blank=True)
-    doctors = models.ForeignKey(Doctor,on_delete=models.CASCADE)
     schedules = models.ForeignKey(Schedule,on_delete=models.CASCADE,default='1')
+    status = models.CharField(max_length= 30, choices=status_choice, default='unchecked')
 
     def save_appointment(self):
         self.save()
 
+    @classmethod
+    def checkedin_appointment(cls, id):
+        cls.objects.filter(id = id).update(status = 'checkedin')
+        
 
+    @classmethod
+    def all_checkedin_appointment(cls):
+        return cls.objects.filter(status = 'checkedin').all()
+        
+    
+    @classmethod
+    def all_unchecked_appointment(cls):
+        return cls.objects.filter(status = 'unchecked').all()
