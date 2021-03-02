@@ -149,18 +149,6 @@ def doctor_detail(request,id):
     single_doctor = Doctor.objects.get(pk= id)
     schedules = Schedule.get_schedule_by_doctor(id)
     return render(request,'patient/doctor_detail.html',{"single_doctor":single_doctor, "schedules":schedules})
-
-
-def search_department(request):
-    if request.method=="GET":
-        search_term=request.GET.get("search")
-        searched_dept=Department.objects.get(name=search_term)
-        print(searched_dept.name)
-        message="{}".format(search_term)
-        return render(request, 'patient/department-search.html',context={"searched_dept":searched_dept, "message":message})
-    else:
-        message="You haven't searched for any department"
-        return render(request, 'patient/department-search.html',context={"message":message})
         
 
 def search_doctor(request):

@@ -14,7 +14,7 @@ li.appointment-btn {
 
 
 li.appointment-btn a {
-  background: #57cac3;
+  background: #45ac8b;
   color: #ffffff;
   font-weight: 600;
   padding-top: 12px;
@@ -65,7 +65,7 @@ li.appointment-btn a {
 }
 
 .slide-btn .btn{
-  background-color: #57cac3;
+  background-color: #45ac8b;;
   border-radius: 0;
   padding: 0.6rem 1.5rem;
   font-size: 1rem;
@@ -78,7 +78,7 @@ li.appointment-btn a {
 }
 .slide-btn .btn-3{
 
-  background-color: #57cac3;
+  background-color: #45ac8b;;
 }
 
 .slide-btn .btn-1 a{
@@ -157,7 +157,7 @@ header span.address-icon {
 }
 
 header span i {
-  color: #57cac3;
+  color: #45ac8b;;
   margin-right: 5px;
 }
 
@@ -228,7 +228,7 @@ footer a:hover {
 }
 
 .angle-up-btn a {
-  background: #57cac3;
+  background: #45ac8b;;
   border: 1px solid #f2f2f2;
   border-radius: 3px;
   font-size: 20px;
@@ -257,7 +257,7 @@ footer a:hover {
 
 .social-icon li a {
   border-radius: 100px;
-  color: #57cac3;
+  color: #45ac8b;;
   font-size: 15px;
   width: 35px;
   height: 35px;

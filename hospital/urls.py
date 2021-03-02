@@ -24,7 +24,6 @@ urlpatterns=[
     url('^user_doctors',views.user_doctors, name = 'user_doctors'),
     url('^department_detail/(\d+)$', views.department_detail, name='department_detail'),
     url('^doctor_detail/(\d+)$', views.doctor_detail, name='doctor_detail'),
-    url('^search', views.search_department, name='search'),
     url('^searched', views.search_doctor, name='searched'),
     url('^appointment/(\d+)$', views.make_appointment, name='appointment'),
     
