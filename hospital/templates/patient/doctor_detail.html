@@ -67,17 +67,14 @@
                     </li>
     
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" style="font-weight: bold; padding-right: 80px; font-family: 'Poppins';color: #0000FF;font-size: 16px;">Doctors</a>
+                        <a class="nav-link" href="#" style="font-weight: bold; padding-right: 80px; font-family: 'Poppins';color:#45ac8b;font-size: 16px;">Doctors</a>
                     </li>
     
                     <li class="nav-item">
                         <a class="nav-link" href="#CONTACT" style="font-weight: bold;padding-right: 80px; color: black; font-family: 'Poppins', sans-serif;">Contacts</a>
                     </li>
     </ul>
-                    <form class="form-inline my-2 my-lg-0  ml-auto" action="{% url 'search' %}" method="GET">
-                    <input type="search" class="form-control mr-sm-2" name="search" placeholder="Search..."
-                        style="border-radius: 30px;height: 35px;font-family: 'Times New Roman', Times, serif;width: 200px;">
-                </form>
+                   
 
             </div>
         </nav>
@@ -102,15 +99,15 @@
             <!-- <div class="card shadow-lg" style="margin-left: -0.38cm;height: 234px;width: 60%;border: none;"> -->
                 <div class="col-7 shadow-lg" style="margin-left: -0.38cm;">
                     <div style="margin-top:3%;">
-                        <span style="font-weight: bold;color: #0000FF;font-size: 20px;">Dr.{{single_doctor.first_name}}
+                        <span style="font-weight: bold;color:#45ac8b;font-size: 20px;">Dr.{{single_doctor.first_name}}
                             {{single_doctor.last_name}} </span>
-                        <p style="font-size: 17px;text-transform: capitalize;">{{single_doctor.departments.name}}
+                        <p style="font-size: 15px;text-transform: capitalize;">{{single_doctor.departments.name}}
                         </p>
                                 <hr>
 
-                                <h5 style="font-weight: bold;color: rgb(126, 123, 123);">Overview</h5>
+                                <h5 style="font-weight: bold;color: rgb(126, 123, 123);font-size: 16px;">Overview</h5>
                                 <p style="font-size: 12px;">{{single_doctor.details}}</p>
-                                <p><i class="fas fa-envelope-open-text" style="color: #0000FF;"></i> <span style="font-weight: bold;color: rgb(88, 86, 86);">{{single_doctor.email}}</span> &nbsp;  | &nbsp; <i class="fas fa-phone" style="color: #0000FF;"></i> <span style="font-weight: bold;color: rgb(88, 86, 86);">{{single_doctor.phone_number}}</span></p>
+                                <p><i class="fas fa-envelope-open-text" style="color: #45ac8b;"></i> <span style="font-weight: bold;color: rgb(126, 123, 123);font-size: 13px;">{{single_doctor.email}}</span> &nbsp;  | &nbsp; <i class="fas fa-phone" style="color: #45ac8b;"></i> <span style="font-weight: bold;color: rgb(126, 123, 123);font-size: 13px;">{{single_doctor.phone_number}}</span></p>
                     </div>
                 </div>
             <!-- </div> -->

@@ -66,7 +66,7 @@
             <h1 style="font-weight: bold;">DOCTORS</h1>
             <h4> <span> <a href="{%url 'index'%}" style="color: white;text-decoration: none;">Home</a></span>
                 <span></span>
-                / <span style="color: #57cac3;font-weight: bold;"> Doctors</span>
+                / <span> <a href="{% url 'user_doctors' %}" style="color: #57cac3;font-weight: bold;text-decoration: none;"> Doctors</a></span>
             </h4>
         </div>
     </div>
@@ -75,7 +75,7 @@
         <div class="container" style="padding-top: 3%;">
 
             {% if searched_doct %}
-            <h5 class="text-center">Found {{ searched_doct|count }} photo{{ users | pluralize }}</strong></h2>
+            <h1>The result found </h1>
                 <div class="row">
                     <div class="col-md-4">
                         <a href="{% url 'doctor_detail' searched_doct.id %}" style="text-decoration: none;">
@@ -97,7 +97,7 @@
                 </div>
                 {% else %}
 
-                <h5 class="text-center"> We didn't match for your search</strong></h5>
+                <h5 class="text-center"> We didn't found any match for your search</strong></h5>
 
                 <a class="d-block mx-auto" href="{%url 'index'%}">
                     <button class="btn btn-outline-danger btn-sm  d-block mx-auto">Back Home</button>
