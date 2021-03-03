@@ -8,12 +8,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% if title %}
-  <title>Hospital - {{title}}</title>
-  {% else %}
-  <title> Hospital </title>
-  {% endif %}
-
+  
+  <title>Doctor</title>
+ 
 
   {% block styles %}
   {% bootstrap_css %}
@@ -86,10 +83,11 @@
       </div>
     </nav>
   </div>
+  <hr>
   
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
     <div class="jumbotron"
-        style="background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('https://hbr.org/resources/images/article_assets/2020/11/Nov20_30_1255356846.jpg');background-size: cover; height: 40vh; background-position: center;margin-top: -0.5cm;">
+        style="background-image:linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url('https://hbr.org/resources/images/article_assets/2020/11/Nov20_30_1255356846.jpg');background-size: cover; height: 40vh; background-position: center;margin-top: -0.4cm;">
 
         <div style="margin-top: 2%;">
             <h4 style="font-weight: bold;text-transform: uppercase;color: white;">{{single_doctor.first_name}}
@@ -103,7 +101,6 @@
             <div class="col-4 shadow-md">
                 <img src="{{single_doctor.doctor_image.url}}" width="100%" alt="">
             </div>
-            <!-- <div class="card shadow-lg" style="margin-left: -0.38cm;height: 234px;width: 60%;border: none;"> -->
                 <div class="col-7 shadow-lg" style="margin-left: -0.38cm;">
                     <div style="margin-top:3%;">
                         <span style="font-weight: bold;color:#45ac8b;font-size: 20px;">Dr.{{single_doctor.first_name}}
@@ -117,14 +114,14 @@
                                 <p><i class="fas fa-envelope-open-text" style="color: #45ac8b;"></i> <span style="font-weight: bold;color: rgb(126, 123, 123);font-size: 13px;">{{single_doctor.email}}</span> &nbsp;  | &nbsp; <i class="fas fa-phone" style="color: #45ac8b;"></i> <span style="font-weight: bold;color: rgb(126, 123, 123);font-size: 13px;">{{single_doctor.phone_number}}</span></p>
                     </div>
                 </div>
-            <!-- </div> -->
+            
         </div>
     </div>
     <br>
     <br>
     <br>
 <div class="container">
-<h3 class="text-center" style="border-bottom: 4px solid #45ac8b;font-weight: bold;max-width: 25%;margin: auto;color: grey;">Available Schedules</h3>
+<h3 class="text-center" style="border-bottom: 4px solid #45ac8b;font-weight: bold;max-width: 25%;margin: auto;color: grey;padding-bottom: 15px;">Available Schedules</h3>
 <br>
 <br>
 <br>
@@ -139,7 +136,7 @@
     </div>
 
     {% empty %}
-    <p>No data is not available</p>
+    <h5 style="text-align: center;font-weight: bold;">No data is available</h5>
     {% endfor %}
 </div>
 
