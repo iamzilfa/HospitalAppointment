@@ -101,7 +101,7 @@
                     <p> <span style="font-weight: bold;">Appointment: </span>  {{appointment.schedules.app_day}} {{appointment.schedules.app_date }} {{appointment.schedules.app_hour }}</p>
                 </div>
                 <div class="card-footer">
-                    <a href="{% url 'index' %}" class="btn" style="float: right; background-color: #45ac8b;color: white;font-weight: bold;">Done</a>
+                    <a href="{% url 'doctor_detail' appointment.schedules.doctor.id %}" class="btn" style="float: right; background-color: #45ac8b;color: white;font-weight: bold;">Done</a>
                 </div>
             </div>
         </div>

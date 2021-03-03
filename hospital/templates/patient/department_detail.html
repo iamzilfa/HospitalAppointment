@@ -87,10 +87,10 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
     <div class="jumbotron"
-        style="background-image:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),url('https://res.cloudinary.com/zilfa/image/upload/v1614712953/iStock-1180549272_aizvsp.jpg');background-size: cover; height: 80vh; background-position: center;">
+        style="background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('https://res.cloudinary.com/zilfa/image/upload/v1614753558/bigstock-Male-Doctor-In-The-Hospital-190586731_yimnjh.jpg');background-size: cover; height: 70vh; background-position: center;">
 
-        <div style="margin-top: 15%;">
-            <h2 style="font-weight: bold;text-transform: uppercase;"> <img class="rounded-circle" src="{{single_department.department_image.url}}" width="60px" alt=""> &nbsp;<span style="color: #45ac8b;">{{single_department.name}}</span> </h2>
+        <div style="margin-top: 12%;margin-left: 50px;">
+            <h4 style="font-weight: bold;text-transform: uppercase;"> <img class="rounded-circle" src="{{single_department.department_image.url}}" width="60px" alt=""> &nbsp;<span style="color: #45ac8b;">{{single_department.name}}</span> </h4>
             
         </div>
     </div>
@@ -100,7 +100,7 @@
         <p style="font-size: 17px;text-align: justify;font-size: 15px;">{{single_department.description}}</p>
     </div>
 <br>
-    <h3 class="text-center" style="color: #45ac8b;font-weight: bold;">OUR SPECIALISTS</h3>
+    <h4 class="text-center" style="color: #45ac8b;font-weight: bold;">OUR SPECIALISTS</h4>
     
     <div>
         <div class="container" style="padding-top: 3%;">
@@ -113,8 +113,8 @@
                             <img src="{{doc.doctor_image.url}}" width="100%">
                         
                         <div class="card-body text-center">
-                            <h6 class="card-title mb-0" style="text-transform: uppercase;color: black;font-weight: bold;font-size: 16px;">DR.{{doc.first_name}} {{doc.last_name}}</h6>
-                            <div class="card-text text-back-50" style="text-transform: uppercase;color: grey;font-weight: bold;" >{{doc.departments}}</div>
+                            <h6 class="card-title mb-0" style="text-transform: uppercase;color: #45ac8b;;font-weight: bold;font-size: 15px;">DR.{{doc.first_name}} {{doc.last_name}}</h6>
+                            <div class="card-text text-back-50" style="text-transform: uppercase;color: grey;font-weight: bold;font-size: 13px;" >{{doc.departments}}</div>
                         </div>
                     </div>
                 </a>
