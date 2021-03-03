@@ -53,6 +53,7 @@ li.appointment-btn a {
 .carousel-caption h5{
   font-size: 35px;
   font-weight: 700;
+  font-family: 'RocknRoll One', sans-serif;
 }
 
 .carousel-caption p{
@@ -65,7 +66,7 @@ li.appointment-btn a {
 }
 
 .slide-btn .btn{
-  background-color: #45ac8b;;
+  background-color: #45ac8b;
   border-radius: 0;
   padding: 0.6rem 1.5rem;
   font-size: 1rem;
@@ -74,27 +75,36 @@ li.appointment-btn a {
 
 .slide-btn .btn-2{
 
-  background-color: white;
+  background-color: #45ac8b;
 }
 .slide-btn .btn-3{
 
-  background-color: #45ac8b;;
+  background-color: #45ac8b;
 }
 
 .slide-btn .btn-1 a{
-  color: #111010;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .slide-btn .btn-2 a{
-  color: #111010;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+
 }
 .slide-btn .btn-3 a{
-  color: #111010;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+
 }
 
 .slide-btn .btn:hover{
-  background-color:#0a3d62;
+  background-color:#214b4b;
   color: white;
+  
 }
 
 #docbody{
@@ -157,7 +167,7 @@ header span.address-icon {
 }
 
 header span i {
-  color: #45ac8b;;
+  color: #45ac8b;
   margin-right: 5px;
 }
 
@@ -228,7 +238,7 @@ footer a:hover {
 }
 
 .angle-up-btn a {
-  background: #45ac8b;;
+  background: #45ac8b;
   border: 1px solid #f2f2f2;
   border-radius: 3px;
   font-size: 20px;
@@ -257,7 +267,7 @@ footer a:hover {
 
 .social-icon li a {
   border-radius: 100px;
-  color: #45ac8b;;
+  color: #45ac8b;
   font-size: 15px;
   width: 35px;
   height: 35px;
@@ -270,7 +280,7 @@ footer a:hover {
 
 .social-icon li a:hover {
   background: #000;
-  color: #57cac3;
+  color: #45ac8b;
 }
  /* end social media */
 /* end footer */
