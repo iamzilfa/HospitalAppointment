@@ -11,7 +11,19 @@
             <div class="card-body">
                 <form action="{% url 'update_schedule' schedule.pk %}" method="POST">
                     {% csrf_token %}
-                    {{ form|crispy }}
+                    <div class="form-group">
+                        <label for="">Date</label>
+                        <input type="date" class="form-control" name="app_date" value="{{schedule.app_date}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Day</label>
+                        <input type="text" class="form-control" name="app_day" value="{{schedule.app_day}}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Hour</label>
+                        <input type="text" class="form-control" name="app_hour" value="{{schedule.app_hour}}" required>
+                    </div>
 
                     <input type="submit" class="btn btn-success" value="Edit">
                 </form>

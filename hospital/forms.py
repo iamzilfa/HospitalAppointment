@@ -20,14 +20,27 @@ class DoctorForm(forms.ModelForm):
 class ScheduleForm(forms.ModelForm):
     class Meta:
         model = Schedule
-        fields = ['app_date', 'app_hour','doctor']
+        fields = '__all__'
+        exclude = ['status']
 
 class UpdateDepartmentForm(forms.ModelForm):
     class Meta:
         model = Department
         fields = ("name","description")
 
+class UpdateDoctorForm(forms.ModelForm):
+    class Meta:
+        model = Doctor
+        fields = '__all__'
+        exclude = ['doctor_image', 'departments']
+
+
 class UpdateScheduleForm(forms.ModelForm):
     class Meta:
         model = Schedule
-        exclude = ['doctor']
+        exclude = ['doctor', 'status']
+
+class AppointmentForm(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        exclude = ['doctors','schedules', 'status']
