@@ -2,8 +2,13 @@
 
 An online web app for booking a doctor's appointment over internet.
 
-## Author(s) information
-[iamzilfa](https://github.com/iamzilfa)
+## Contributors information
+* [iamzilfa](https://github.com/iamzilfa)
+* [Ingabineza12](https://github.com/Ingabineza12)
+* [Ornella-KK](https://github.com/Ornella-KK)
+* [Bella-Amandine](https://github.com/Bella-Amandine)
+* [pascaline-irabaruta](https://github.com/pascaline-irabaruta)
+
 
 ## Setup/Installation Requirements
 * Ubuntu
@@ -15,15 +20,12 @@ An online web app for booking a doctor's appointment over internet.
 * Postgres
 
 ## BDD
-<!-- 
-1.Sign in with the application to start using.
-2. Set up a profile about me.
-3. View posted photos.
-4. Only view details of a single photo.
-5. Like a photo and leave a comment on it.
-6. Upload my photos to the application.
-7. View  my profile with all photos .
-8. Search for photos. -->
+
+1. User will be able to view different departments and their description
+2. In each department user will be able to view different doctors
+3. User will be able to request for an appointment to the chosen doctor but according to his schedule
+4. After requesting an appointment, User will view a notification showing request have been made
+5. Also user can search by doctor
 
 
 ## Technologies Used
