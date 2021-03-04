@@ -46,4 +46,4 @@ If anyone need support concerning my project or anything related, just reach out
 
 ### License
 
-Copyright (c) [2021] [Health Care]
+Copyright (c) 2021 **Health Care**
