@@ -40,7 +40,7 @@ An online web app for booking a doctor's appointment over internet.
 
 
 ## Support and contact details
-If anyone need support concerning my project or anything related, just reach out to healthcare@gmail.com
+If anyone need support concerning my project or anything related, just reach out to hospitalhealthcare@gmail.com
  
 [Here is the Link]( https://hospitlappointment.herokuapp.com/ "Health Care")
 

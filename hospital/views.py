@@ -2,12 +2,13 @@ from django.shortcuts import render, redirect
 from .forms import *
 from .models import Department, Doctor, Schedule, Appointment
 from django.contrib.auth.decorators import login_required
+from .email import send_welcome_email
 
 
 def index(request):
     return render(request, 'patient/index.html')
 
-
+@login_required(login_url='/accounts/login/')
 def all_departments(request):
     departments = Department.objects.all()
     return render(request, 'admin/all-departments.html', context={"departments": departments})
@@ -88,6 +89,23 @@ def doctor_delete(request,pk):
 
     return redirect('doctors')
 
+def search_doc(request):
+    if request.method=="GET":
+        search_term=request.GET.get("doc")
+        searched_doc=Doctor.objects.get(first_name=search_term)
+        schedules = Schedule.objects.filter(doctor=searched_doc.id)
+        for ap in schedules:
+            appointment = Appointment.objects.get(schedules = ap.id)
+            print(appointment.first_name)
+        message="{}".format(search_term)
+        return render(request, 'admin/doctor-search.html',context={"searched_doc":searched_doc, "message":message})
+    else:
+
+        return redirect('all-doctors')
+
+
+
+
 
 def all_schedules(request):
     schedules = Schedule.objects.all()
@@ -158,7 +176,7 @@ def search_doctor(request):
         message="{}".format(search_term)
         return render(request, 'patient/doctor-search.html',context={"searched_doct":searched_doct, "message":message})
     else:
-        message="You haven't searched for any department"
+        message="You haven't searched for any doctor"
         return render(request, 'patient/doctor-search.html',context={"message":message})
 
 
@@ -175,6 +193,7 @@ def make_appointment(request,schedule_id):
             new_appointment = Appointment(first_name = first_name, last_name = last_name, address=address, email = email, phone_number=phone_number, schedules = schedule )
             new_appointment.save()
             Schedule.taken_schedule(schedule_id)
+            send_welcome_email(first_name,last_name,schedule,email)
             return render(request, 'patient/appointment-success.html', {"appointment":new_appointment})
     else:
         form = AppointmentForm()
