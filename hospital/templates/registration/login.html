@@ -12,7 +12,7 @@
       <div class="card mb-4 shadow-sm">
         <div class="card-body">
 
-          <form action="{% url 'all-departments' %}" method="post" style="color:black">
+          <form action="/accounts/login/" method="post" style="color:black">
             {% csrf_token %}
             {% bootstrap_form form%}
 
@@ -27,7 +27,7 @@
           {% if form.errors %}
           <p> Password or Username is incorrect </p>
           {% endif %}
-          <p>Don't have an account? <a id="sign" href="/accounts/register/"> Sign Up</a></p>
+          <!-- <p>Don't have an account? <a id="sign" href="/accounts/register/"> Sign Up</a></p> -->
         </div>
       </div>
     </div>
