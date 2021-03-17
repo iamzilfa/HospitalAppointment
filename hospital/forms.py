@@ -14,8 +14,7 @@ class DepartmentForm(forms.ModelForm):
 class DoctorForm(forms.ModelForm):
     class Meta:
         model = Doctor
-        fields = ("first_name","last_name","email","phone_number","details","doctor_image","departments",)
-        # exclude = ['departments']
+        fields = '__all__'
 
 class ScheduleForm(forms.ModelForm):
     class Meta:

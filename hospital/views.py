@@ -3,7 +3,9 @@ from .forms import *
 from .models import Department, Doctor, Schedule, Appointment
 from django.contrib.auth.decorators import login_required
 from .email import send_welcome_email
-
+from django.conf import settings
+from django.views.generic.base import TemplateView
+from json import dumps 
 
 def index(request):
     return render(request, 'patient/index.html')
@@ -181,6 +183,16 @@ def search_doctor(request):
 
 
 def make_appointment(request,schedule_id):
+    # if request.method=='POST':
+    #     form = AppointmentForm(request.POST)
+    #     if form.is_valid():
+    #         email = form.cleaned_data['email']
+    #         dataJSON = dumps(email)
+    #         return render(request,'patient/payment-form.html', context={"email":dataJSON})
+    # else:
+    #     form = AppointmentForm()
+    #     return render(request, 'patient/appointment.html', {"form":form, "schedule_id":schedule_id})
+
     if request.method=='POST':
         form = AppointmentForm(request.POST)
         if form.is_valid():
@@ -213,3 +225,10 @@ def checkin(request,id):
     Appointment.checkedin_appointment(id)
     return redirect('checkedin')
 
+
+class HomePageView(TemplateView):
+    template_name = 'patient/index.html'
+def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['key'] = settings.RAVE_PUBLIC_KEY
+    return context
