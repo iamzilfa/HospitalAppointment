@@ -22,8 +22,8 @@
             <a class="navbar-brand" href="{% url 'all-departments' %}">HC</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
-            <form class="form-inline my-2 my-lg-0  ml-auto" action="{% url 'admindoc' %}" method="GET">
-                <input type="text" class="form-control mr-sm-2" name="doc" placeholder="Search..."
+            <form class="form-inline my-2 my-lg-0  ml-auto" action="{% url 'doctor-search' %}" method="GET">
+                <input type="text" class="form-control mr-sm-2" name="doctor-search" placeholder="Search..."
                     style="border-radius: 30px;height: 35px;font-family: 'Times New Roman', Times, serif;width: 200px;">
             </form>
             <!-- Navbar-->
