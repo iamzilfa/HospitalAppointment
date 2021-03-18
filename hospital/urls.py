@@ -26,7 +26,8 @@ urlpatterns=[
     url('^doctor_detail/(\d+)$', views.doctor_detail, name='doctor_detail'),
     url('^searched', views.search_doctor, name='searched'),
     url('^appointment/(\d+)$', views.make_appointment, name='appointment'),
-    url('^admin/admindoc', views.search_doc, name='admindoc'),
+    url('^admin/doctor-search', views.search_doc, name='doctor-search'),
+    url('^admin/emergency(?P<pk>\d+)$', views.doctor_emergency, name='emergency'),
     
     
 ]

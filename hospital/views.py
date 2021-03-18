@@ -3,9 +3,11 @@ from .forms import *
 from .models import Department, Doctor, Schedule, Appointment
 from django.contrib.auth.decorators import login_required
 from .email import send_welcome_email
+from .email import send_emergency_email
 from django.conf import settings
 from django.views.generic.base import TemplateView
 from json import dumps 
+from django.http import HttpResponse
 
 def index(request):
     return render(request, 'patient/index.html')
@@ -93,20 +95,37 @@ def doctor_delete(request,pk):
 
 def search_doc(request):
     if request.method=="GET":
-        search_term=request.GET.get("doc")
+        search_term=request.GET.get("doctor-search")
         searched_doc=Doctor.objects.get(first_name=search_term)
         schedules = Schedule.objects.filter(doctor=searched_doc.id)
         for ap in schedules:
-            appointment = Appointment.objects.get(schedules = ap.id)
-            print(appointment.first_name)
-        message="{}".format(search_term)
-        return render(request, 'admin/doctor-search.html',context={"searched_doc":searched_doc, "message":message})
+            if ap.status == "taken":
+                appointment = []
+                appointment.append(Appointment.objects.get(schedules_id=ap.id))
+                print(ap.id)
+        # appointment = Appointment.objects.filter(schedules = schedules.id)
+        return render(request, 'admin/doctor-search.html',context={"searched_doc":searched_doc,"appointment":appointment})
     else:
 
         return redirect('all-doctors')
 
 
+def doctor_emergency(request,pk):
+    appointments = Appointment.objects.get(pk=pk)
+    send_emergency_email(appointments.first_name,appointments.last_name,appointments.schedules,appointments.email)
+    searched_doc=Doctor.objects.get(id=appointments.schedules.doctor.id)
+    schedules = Schedule.objects.filter(doctor=searched_doc.id)
+    for ap in schedules:
+        if ap.status == "taken":
+            appointment = []
+            appointment.append(Appointment.objects.get(schedules_id=ap.id))
+            print(ap.id)
+        # appointment = Appointment.objects.filter(schedules = schedules.id)
+        message = "Email to {} {} Was Successfully Sent".format(appointments.first_name,appointments.last_name)
+        return render(request, 'admin/doctor-search.html',context={"searched_doc":searched_doc,"appointment":appointment, "message": message})
+    else:
 
+        return redirect('all-doctors')
 
 
 def all_schedules(request):
