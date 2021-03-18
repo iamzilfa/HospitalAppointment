@@ -6,7 +6,7 @@ from .email import send_welcome_email
 from .email import send_emergency_email
 from django.conf import settings
 from django.views.generic.base import TemplateView
-from json import dumps 
+from json import dumps
 from django.http import HttpResponse
 
 def index(request):
@@ -80,7 +80,7 @@ def update_doctor(request,pk):
             email = form.cleaned_data['email']
             phone_number = form.cleaned_data['phone_number']
             details = form.cleaned_data['details']
-            Doctor.update_doctor(pk, first_name, last_name, email,phone_number,details) 
+            Doctor.update_doctor(pk, first_name, last_name, email,phone_number,details)
             return redirect("doctors")
     else:
         form = UpdateDoctorForm()
@@ -120,7 +120,6 @@ def doctor_emergency(request,pk):
             appointment = []
             appointment.append(Appointment.objects.get(schedules_id=ap.id))
             print(ap.id)
-        # appointment = Appointment.objects.filter(schedules = schedules.id)
         message = "Email to {} {} Was Successfully Sent".format(appointments.first_name,appointments.last_name)
         return render(request, 'admin/doctor-search.html',context={"searched_doc":searched_doc,"appointment":appointment, "message": message})
     else:
@@ -188,7 +187,7 @@ def doctor_detail(request,id):
     single_doctor = Doctor.objects.get(pk= id)
     schedules = Schedule.get_schedule_by_doctor(id)
     return render(request,'patient/doctor_detail.html',{"single_doctor":single_doctor, "schedules":schedules})
-        
+
 
 def search_doctor(request):
     if request.method=="GET":
@@ -202,15 +201,6 @@ def search_doctor(request):
 
 
 def make_appointment(request,schedule_id):
-    # if request.method=='POST':
-    #     form = AppointmentForm(request.POST)
-    #     if form.is_valid():
-    #         email = form.cleaned_data['email']
-    #         dataJSON = dumps(email)
-    #         return render(request,'patient/payment-form.html', context={"email":dataJSON})
-    # else:
-    #     form = AppointmentForm()
-    #     return render(request, 'patient/appointment.html', {"form":form, "schedule_id":schedule_id})
 
     if request.method=='POST':
         form = AppointmentForm(request.POST)
@@ -229,7 +219,7 @@ def make_appointment(request,schedule_id):
     else:
         form = AppointmentForm()
         return render(request, 'patient/appointment.html', {"form":form, "schedule_id":schedule_id})
-        
+
 
 def all_unchecked_appointments(request):
     appointments= Appointment.all_unchecked_appointment()
