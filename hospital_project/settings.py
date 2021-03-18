@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'bootstrap4',
     'django.contrib.staticfiles',
 ]
 
@@ -82,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'hospitals',
-        'USER': 'amandine',
-        'PASSWORD': 'pass',
+        'USER': 'pascy',
+        'PASSWORD': '21338',
     }
 }
 
